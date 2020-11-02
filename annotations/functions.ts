@@ -32,7 +32,7 @@ const todaysWeather = {
 
 
 // TS Function annotation with object literal type annotation.
-// const logWeather = (day: {date: Date, weather: string}): void => {
+// const logWeather = (day: {date: Date; weather: string}): void => {
 //   console.log(day.date);
 //   console.log(day.weather);
 // };
@@ -45,7 +45,7 @@ const todaysWeather = {
 // };
 
 // TS destructuring with type annotations
-const logWeather = ({ date, weather}: {date: Date, weather: string}): void => {
+const logWeather = ({ date, weather}: {date: Date; weather: string}): void => {
   console.log(date);
   console.log(weather);
 };
