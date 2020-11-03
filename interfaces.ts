@@ -12,6 +12,15 @@ const oldCivic = {
   }
 };
 
+const theDrink = {
+  color: 'brown',
+  carbonated: true,
+  sugar: 40,
+  summary(): string {
+    return `My drink has ${this.sugar} grams of sugar`;
+  }
+};
+
 
 // Problem with vehicle with object literal type annotation
 // It's hard to read the type, if we have other functions that take vehicle 
@@ -30,3 +39,4 @@ const printSummary = (item: Reportable): void => {
 };
 
 printSummary(oldCivic);
+printSummary(theDrink);
