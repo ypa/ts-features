@@ -25,5 +25,9 @@ class ArrayOfAnything<T> {
   }
 }
 
-new ArrayOfAnything<string>(['abc', 'def', 'ghi']);
-new ArrayOfAnything<number>([1, 2, 3]);
+const arr1 = new ArrayOfAnything<string>(['abc', 'def', 'ghi']);
+const arr2 = new ArrayOfAnything<number>([1, 2, 3]);
+
+// Using type inference with generics
+const arr11 = new ArrayOfAnything(['abc', 'def', 'ghi']);
+const arr22 = new ArrayOfAnything([1, 2, 3]);
