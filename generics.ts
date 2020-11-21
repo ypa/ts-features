@@ -58,3 +58,40 @@ printAnything<string>(['abc', 'def', 'ghi']);
 
 // Using generics with type inference
 printAnything(['abc', 'def', 'ghi']);
+
+
+
+// Generic Constraints
+class Car {
+  print() {
+    console.log('I am a car');
+  }
+}
+
+class House {
+  print() {
+    console.log('I am a house');
+  }
+}
+
+// function printHousesOrCars<T>(arr: T[]): void {
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i].print();  // error
+//   }
+// }
+
+
+// Define interface and using it as type constraint on generics
+interface Printable {
+  print(): void;
+}
+
+function printHousesOrCars<T extends Printable>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].print();  // all good now
+  }
+}
+
+// printHousesOrCars([1, 2, 3, 4]); // Not allowed
+printHousesOrCars<House>([new House(), new House()]);
+printHousesOrCars<Car>([new Car(), new Car()]);
