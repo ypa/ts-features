@@ -62,7 +62,7 @@ printAnything(['abc', 'def', 'ghi']);
 
 
 // Generic Constraints
-class Car {
+class RealCar {
   print() {
     console.log('I am a car');
   }
@@ -94,4 +94,4 @@ function printHousesOrCars<T extends Printable>(arr: T[]): void {
 
 // printHousesOrCars([1, 2, 3, 4]); // Not allowed
 printHousesOrCars<House>([new House(), new House()]);
-printHousesOrCars<Car>([new Car(), new Car()]);
+printHousesOrCars<RealCar>([new RealCar(), new RealCar()]);
