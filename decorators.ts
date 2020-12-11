@@ -1,6 +1,9 @@
+@classDecorator
 class Boat {
+  // @testDecorator2
   color: string = 'red';
 
+  @testDecorator
   get formattedColor(): string {
     return `This boats color is ${this.color}`;
   }
@@ -14,6 +17,16 @@ class Boat {
   pilotSloppy(): void {
     throw new Error();
     console.log('swish');
+  }
+
+  @logError('Something bad happened')
+  pilot2(@parameterDecorator speed: string,
+         @parameterDecorator generateWake: boolean): void {
+    if (speed === 'fast') {
+      console.log('swish');
+    } else {
+      console.log('nothing');
+    }
   }
 }
 
@@ -33,7 +46,7 @@ testDecorator(Boat.prototype, 'pilot');
 
 
 function logError(errorMessage: string) {
-  return function(target: any, key: string, desc: PropertyDescriptor): void {
+  return function (target: any, key: string, desc: PropertyDescriptor): void {
     const method = desc.value; // pilotSloppy function
 
     desc.value = function () {
@@ -46,4 +59,23 @@ function logError(errorMessage: string) {
   }
 }
 
-new Boat().pilotSloppy();
+
+
+// new Boat().pilotSloppy();
+
+function testDecorator2(target: any, key: string) {
+  console.log(target.color);  // prints undefined because target is a prototype
+}
+
+function testDecorator3(target: any, key: string) {
+  console.log(key); // prints formattedColor
+}
+
+function parameterDecorator(target: any, key: string, index: number) {
+  console.log(key, index); // prints pilot2 0
+                           // pilot2 1
+}
+
+function classDecorator(constructor: typeof Boat) {
+  console.log(constructor);  // prints [Function: Boat]
+}
