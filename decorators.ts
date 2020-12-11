@@ -10,7 +10,7 @@ class Boat {
     console.log('swish');
   }
 
-  @logError
+  @logError("Oops! my bad")
   pilotSloppy(): void {
     throw new Error();
     console.log('swish');
@@ -32,14 +32,16 @@ testDecorator(Boat.prototype, 'pilot');
 // Key: pilot
 
 
-function logError(target: any, key: string, desc: PropertyDescriptor): void {
-  const method = desc.value; // pilotSloppy function
+function logError(errorMessage: string) {
+  return function(target: any, key: string, desc: PropertyDescriptor): void {
+    const method = desc.value; // pilotSloppy function
 
-  desc.value = function () {
-    try {
-      method();
-    } catch (e) {
-      console.log("Oops, I sunk the boat!");
+    desc.value = function () {
+      try {
+        method();
+      } catch (e) {
+        console.log(errorMessage);
+      }
     }
   }
 }
