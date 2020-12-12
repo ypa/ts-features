@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:ypa/ts-features.git",
   "author": "Yan P Aung <yan.pye.aung@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
 }
